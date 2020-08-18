@@ -2,13 +2,13 @@ import React from 'react';
 import { SafeAreaView, View, FlatList, StyleSheet, Text,Image,TouchableOpacity} from 'react-native';
 const DATA = [
   {
-    id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28ba',
+    id: '1',
     title: 'Hamza Ahzam',
     phone: '03076232309',
     DOB: '05/07/96',
   },
   {
-    id: '3ac68afc-c605-48d3-a4f8-fbd91aa97f63',
+    id: '2',
     title: 'Ahzam',
     phone: '03156232323',
     DOB: '05/07/9',
@@ -16,7 +16,7 @@ const DATA = [
 
   },
   {
-    id: '58694a0f-3da1-471f-bd96-145571e29d72',
+    id: '3',
     title: 'Usman Ahmad Raza',
     phone: '03016232376',
     DOB: '05/07/99',
@@ -24,31 +24,31 @@ const DATA = [
   },
 ];
 
-const Item = ({ title, phone }) => (
+const Item = ({ title,props }) => (
   <View style={styles.item}>
-    <Image style={styles.img} source={require('../assets/User.png')}/>
-    <Text style={styles.title}>{title}</Text>
+    <Image style={styles.img}  source={require('../assets/User.png')}/>
+    <Text style={styles.title} onPress={ () => this.navigation.navigate('Details')}>{title}</Text>
   </View>
 );
 
-const Add = () => {
+const LogIn = ({navigation}) => {
   const renderItem = ({ item }) => (
     <Item title={item.title}  />
   );
 
   return (
     <SafeAreaView style={styles.container}>
-      <TouchableOpacity style={styles.logo}>
+      <View style={styles.logo}>
         <Text style={{fontSize:30,color:'#1692D5'}}>
           Contacts
         </Text>
-      </TouchableOpacity>
+      </View>
       <FlatList
         data={DATA}
         renderItem={renderItem}
         //keyExtractor={item => item.id}
       />
-    <TouchableOpacity style={styles.btn}> 
+    <TouchableOpacity style={styles.btn} onPress={ ()=> navigation.navigate('Add')}> 
       <Text style={{fontSize:34,color:'white'}}>
         +
       </Text>
@@ -103,4 +103,4 @@ width:40
   }
 });
 
-export default Add;
+export default LogIn;

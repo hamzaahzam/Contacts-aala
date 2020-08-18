@@ -1,65 +1,69 @@
 import React from 'react';
-import { SafeAreaView, View, FlatList, StyleSheet, Text } from 'react-native';
+import {View,Text,SafeAreaView,StyleSheet,TextInput,Image} from 'react-native';
+ const Add = ({navigation}) => {
+   return(
+     <SafeAreaView>
+     <View style={styles.Topbar} >
+     <Text style={{fontSize:30, marginLeft:20}} onPress={() => navigation.goBack()}>
+     ✕ 
+     </Text>
+     <Text style={{fontSize:26}}>
+       Create Contact
+     </Text>
+     <Text style={{fontSize:20,marginRight:20, color:'#1692D5'}}>
+       Save
+     </Text>
+     </View>
+     
+     <View style={{flexDirection:'row',justifyContent:"center",alignItems:'center',marginTop:90}}>
+       <Image style={styles.nameimg} source={require('../assets/Name.png')}/>
+       <TextInput
+       placeholder="Enter Your Name"
+       style={styles.nameinput}
+       />
+     </View>
+     <View style={{flexDirection:'row',justifyContent:"center",alignItems:'center',marginTop:20}}>
+       <Image style={styles.nameimg} source={require('../assets/Phon.png')}/>
+       <TextInput
+       placeholder="Enter Your Phone number"
+       keyboardType="numeric"
+       style={styles.nameinput}
+       />
+     </View>
+     <View style={{flexDirection:'row',justifyContent:"center",alignItems:'center',marginTop:20}}>
+       <Image style={styles.nameimg} source={require('../assets/DOB.png')}/>
+       <TextInput
+       placeholder="Enter Your Date of Birth"
+       style={styles.nameinput}
+       />
+     </View>
 
-const DATA = [
-  {
-    id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28ba',
-    title: 'Hamza',
-    phone: '03076232309',
-    DOB: '05/07/96',
+     </SafeAreaView>
+   );
+ }
+ const styles = StyleSheet.create({
+  Topbar:{
+    height:70,
+    shadowColor:'black',
+    shadowRadius:5,
+    elevation:2,
+    justifyContent:'space-between',
+    alignItems:'center',
+    flexDirection:'row'
   },
-  {
-    id: '3ac68afc-c605-48d3-a4f8-fbd91aa97f63',
-    title: 'Ahzam',
-    phone: '03156232323',
-    DOB: '05/07/9',
-
-
+  nameinput:{
+    
+    height: 50,
+    width:300,
+    borderColor: 'gray',
+    borderWidth: 1,
+    marginLeft:10,
+    borderRadius:7
   },
-  {
-    id: '58694a0f-3da1-471f-bd96-145571e29d72',
-    title: 'Usman',
-    phone: '03016232376',
-    DOB: '05/07/99',
-
-  },
-];
-
-const Item = ({ title, phone }) => (
-  <View style={styles.item}>
-    <Text style={styles.title}>{title}</Text>
-    <Text style={styles.title}>{phone}</Text>
-
-  </View>
-);
-
-const Add = () => {
-  const renderItem = ({ item }) => (
-    <Item title={item.title}  phone={item.phone}/>
-  );
-
-  return (
-    <SafeAreaView>
-      <FlatList
-        data={DATA}
-        renderItem={renderItem}
-        //keyExtractor={item => item.id}
-      />
-    </SafeAreaView>
-  );
-}
-
-const styles = StyleSheet.create({
-  
-  item: {
-    backgroundColor: '#f9c2ff',
-    padding: 10,
-    marginVertical: 8,
-    marginHorizontal: 16,
-  },
-  title: {
-    fontSize: 32,
-  },
+  nameimg:{
+    height:20,
+    width:20,
+    resizeMode:'contain'
+  }
 });
-
-export default Add;
+ export default Add;
