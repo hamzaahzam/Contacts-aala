@@ -3,13 +3,13 @@ import { SafeAreaView, View, FlatList, StyleSheet, Text,Image,TouchableOpacity} 
 const DATA = [
   {
     id: '1',
-    title: 'Hamza Ahzam',
+    name: 'zubair Ahzam',
     phone: '03076232309',
     DOB: '05/07/96',
   },
   {
     id: '2',
-    title: 'Ahzam',
+    name: 'Ahzam',
     phone: '03156232323',
     DOB: '05/07/9',
 
@@ -17,25 +17,25 @@ const DATA = [
   },
   {
     id: '3',
-    title: 'Usman Ahmad Raza',
+    name: 'Usman Ahmad Raza',
     phone: '03016232376',
     DOB: '05/07/99',
 
   },
 ];
 
-const Item = ({ title,props }) => (
-  <View style={styles.item}>
-    <Image style={styles.img}  source={require('../assets/User.png')}/>
-    <Text style={styles.title} onPress={ () => this.navigation.navigate('Details')}>{title}</Text>
-  </View>
-);
 
-const LogIn = ({navigation}) => {
+
+const Contacts = ({navigation}) => {
   const renderItem = ({ item }) => (
-    <Item title={item.title}  />
+    <Item name={item.name}  />
   );
-
+  const Item = ({ name }) => (
+    <View style={styles.item}>
+      <Image style={styles.img}  source={require('../assets/User.png')}/>
+      <Text style={styles.name} onPress={ () => navigation.navigate('Details')}>{name}</Text>
+    </View>
+  );
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.logo}>
@@ -44,7 +44,10 @@ const LogIn = ({navigation}) => {
         </Text>
       </View>
       <FlatList
-        data={DATA}
+        data={DATA.sort(function(a,b) {
+          return (a.name < b.name) ? -1 : (a.name > b.name) ? 1 : 0;
+        })
+      }
         renderItem={renderItem}
         //keyExtractor={item => item.id}
       />
@@ -68,7 +71,7 @@ const styles = StyleSheet.create({
     alignItems:'center',
     
   },
-  title: {
+  name: {
     fontSize: 18,
     marginLeft:20,
   },
@@ -103,4 +106,4 @@ width:40
   }
 });
 
-export default LogIn;
+export default Contacts;
