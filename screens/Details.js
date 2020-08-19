@@ -3,7 +3,7 @@ import {StyleSheet, Text, View,Image,SafeAreaView,FlatList} from 'react-native';
 const DATA = [
     {
       id: '1',
-      name: 'Hamza Ahzam',
+      name: 'Zubair Ahzam',
       phone: '03076232309',
       DOB: '05/07/96',
     },
